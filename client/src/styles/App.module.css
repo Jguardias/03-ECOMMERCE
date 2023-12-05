@@ -1,0 +1,322 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat-Light.ttf') format('opentype'),
+       url('./assets/fonts/Montserrat-SemiBold.ttf') format('opentype');
+}
+
+*{
+    box-sizing: border-box;
+    font-family:'Montserrat', sans-serif;
+    margin: 0;
+}
+
+
+body{
+  background-color: #f1f1f1;
+}
+/* styles header */
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  width:100%;
+  height: 70px;
+  padding: 5px;
+  color: rgb(0, 0, 0);
+  background-color: white;
+}
+
+.header__info{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width:70%;
+  
+}
+
+.header__info__icon{
+  font-size: 3em;
+  font-weight: 100;
+}
+
+
+.header__info__title{
+  font-weight: 100;
+  font-size: 1em;
+}
+
+.header__carShop{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  font-size: 2.2em;
+  height: auto;
+  width: auto;
+  color: rgb(0, 0, 0);
+}
+
+.header__carShop:hover{
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.03);
+  border-radius: 50%;
+}
+.header__carShop__circle{
+  text-align: center;
+  font-size: 14px;
+  color:white;
+  font-weight: 600;
+  background-color: red;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+}
+
+/* styles header menu burger */
+.header__info__titleMenu{
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 10px;
+}
+.header__info__linkMenu{
+  display: flex;
+  justify-content: end;
+  text-align: start;
+  font-weight: 600;
+  padding: 15px;
+  width: 100%;
+  border-top: 1px solid rgba(128, 128, 128, 0.218);
+  text-decoration: none;
+}
+
+.header__info__linkMenu:hover{
+  background-color: rgba(128, 128, 128, 0.03);
+}
+.header__info__linkMenu span{
+  width: 100%;
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.header__info__linkMenu p{
+  color: gray;
+  width: 100%;
+  font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+.banner{
+  max-width: 100%;
+  height: auto;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.container__title{
+  text-align: start;
+  width: 100%;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.container__categories{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 25px;
+  white-space: nowrap;
+  overflow:scroll;
+}
+
+.container__categories::-webkit-scrollbar{
+  display: none;
+}
+
+@media (max-width:1280px) {
+  .container__categories {
+    justify-content: start;
+  }
+
+}
+
+/* styles card for promotions, category and styles of Modal card*/
+.card{
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  max-width: 420px;
+  width: 280px;
+  height: 300px;
+  border-radius: 5px;
+  background-color: #ffff;
+  padding: 10px;
+  margin-left: 5px;
+}
+.card:hover{  
+  box-shadow: 0px 2px 4px rgba(81, 81, 81, 0.748);
+}
+.card__icon{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 30px;
+}
+
+.card__img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  width: 100%;
+  height: 50%;
+}
+.card__img img{
+  width: 100px;
+  height: 100px;
+}
+
+.card__img img:hover{
+  transition: transform 0.5s ease-in-out;
+  transform: scale(1.2);
+  object-fit: cover;
+}
+
+.card__info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.card__info h3{
+  width: 100%;
+  justify-content: start;
+  
+}
+.card__info p{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__info strong{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  text-align: end;
+}
+
+.card__info strong p{
+  color: green;
+}
+
+.card__info__btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 100%;
+  height: 2em;
+  background-color:  rgb(255, 144, 144);
+  color: rgb(255, 0, 0);
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.modalProduct__title{
+  padding: 5px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.218);
+}
+
+.modalProduct__price{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border-top: 1px solid rgba(128, 128, 128, 0.218);
+ margin-top: 10px;
+ padding: 15px;
+}
+
+
+
+ /* styles Modal card shop car header*/
+.modal__title{
+  text-align: center;
+}
+
+.modal__footer__text{
+  font-weight: 600;
+}
+
+.modal__footer__btn{
+  width: 100%;
+  height: 2em;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(255, 76, 76);
+  border: none;
+}
+
+.modalCard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.218);
+}
+.modalCard__img img{
+  width: 75px;
+  height: 75px;
+}
+
+.modalCard__info{
+  padding: 5px;
+  white-space: nowrap;
+  font-size: 13px;
+}
+.modalCard__size{
+  display: flex;
+  gap:10px;
+  font-size: 1.2em;
+  margin: 5px;
+}
+
+
+.footer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items:center;
+  background-color:white;
+  padding: 10px;
+  width: 100%;
+  height: auto;
+}
+
+.footer__link{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 20px;
+}
