@@ -4,7 +4,7 @@ import { useState } from "react";
 import {slide as MenuBurger} from "react-burger-menu"
 //import modal component for see car shop 
 import { Modal } from "react-responsive-modal"
-import  CarShopCard  from "./CarShopCard";
+import  CarShopCard  from "./CarShopCard.jsx";
 //import icons for App from ReactIcons 
 import { HiOutlineLocationMarker, HiOutlineMenu } from "react-icons/hi";
 import {AiOutlineShop} from "react-icons/ai";

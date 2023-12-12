@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Montserrat';
-  src: url('./assets/fonts/Montserrat-Light.ttf') format('opentype'),
-       url('./assets/fonts/Montserrat-SemiBold.ttf') format('opentype');
+  src: url('../assets/fonts/Montserrat-Light.ttf') format('opentype'),
+       url('../assets/fonts/Montserrat-SemiBold.ttf') format('opentype');
 }
 
 *{
@@ -27,6 +27,7 @@ body{
   padding: 5px;
   color: rgb(0, 0, 0);
   background-color: white;
+  box-shadow: 0px 2px 10px rgba(81, 81, 81, 0.253);
 }
 
 .header__info{
