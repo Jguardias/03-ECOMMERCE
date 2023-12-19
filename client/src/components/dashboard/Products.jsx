@@ -69,7 +69,7 @@ function Products() {
 
   return (
     //dashboardProducts component display Form of product and Table information  of products 
-    <div className={styles.dashBoardProduct}>
+    <div >
      {/* Form product for submit new product to db  */}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
 

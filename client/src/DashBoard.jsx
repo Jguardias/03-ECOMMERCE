@@ -1,10 +1,11 @@
 //import dependencies of react 
 import { Routes, Route} from "react-router-dom";
 //import components for Dashboard component  
-import Products from "./components/dashboard/DashBoardProducts.jsx";
-import Categories from "./components/dashboard/DashBoardCategories.jsx";
+import Products from "./components/dashboard/Products.jsx";
+import Categories from "./components/dashboard/Categories.jsx";
+import Home from "./components/dashboard/Home.jsx"
 import DefaultComponent from "./components/dashboard/DashBoardDefault.jsx";
-import DashBoardHeader from "./components/dashboard/DashBoardHeader.jsx"
+import DashBoardHeader from "./components/dashboard/Header.jsx"
 //import styles module for DashBoard component
 import styles from "./styles/DashBoard.module.css";
 
@@ -17,7 +18,8 @@ function DashBoard() {
     
       {/*Navegation routes for rendering components of DashBoard*/}
       <Routes>
-        <Route path="/" element={<Categories />} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/categories" element={<Categories/>} />
         <Route path="/products" element={<Products />} />
         <Route path="/shopCars" element={<DefaultComponent />} />
         <Route path="/systemOrders" element={<DefaultComponent />} />

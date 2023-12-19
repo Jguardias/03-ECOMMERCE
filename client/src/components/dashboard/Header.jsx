@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 //import menu side
 import {slide as MenuBurger} from "react-burger-menu"
 //import icons for App from ReactIcons 
-import { HiOutlineLocationMarker, HiOutlineMenu } from "react-icons/hi";
+import {HiOutlineMenu } from "react-icons/hi";
 //import icons for App from ReactIcons 
 import { TbCategory } from "react-icons/tb";
 import { CgShoppingBag } from "react-icons/cg";
@@ -84,7 +84,7 @@ const OPTIONS =[
   {
     //{/* CRUD Categories */ }
    name:"Categorias",
-   link: "/DashBoard",
+   link: "/DashBoard/categories",
    icon: <BsClipboardCheck />
   },
   //{/* CRUD Products */ }

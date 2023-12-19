@@ -23,30 +23,9 @@ h2{
     font-weight: 600;
     
 }
-/* 
-table{  
-    width: 100%;  
-    background-color: white;
-    padding: 20px;
-}
-
-table th{
-    text-align: center;
-    padding: 25px;
-}
-table tbody tr{
-    box-shadow: 0 1px 0 0 rgba(128, 128, 128, 0.218);
-}
-table tbody tr td{
-    font-weight: 100;
-    text-align: center;
-    padding: 15px;
-    margin: 10px;   
-} */
 
 
-
-/* styles header */
+/* styles header  dashboard*/
 .header{
     display: flex;
     justify-content: space-between;
@@ -145,56 +124,113 @@ table tbody tr td{
   }
  
 
-.dashBoardCategory{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0px;
-    overflow: hidden;
-    width: 100%;
-    
- }
-  
-.inputForm{
+/* styles dashBoardCategory */
+
+
+/* styles inputText  and inputTextArea of FromCategories component */
+.containerInputOfForm{
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-bottom: 10px;
-}
+} 
 
-.inputForm input{
+.containerInputOfForm__group{
   width: 500px;
-  height: 45px;
-  border-radius: 6px;
-  font-size: 18px;
-  padding: 0 15px;
-  border: 1px solid #2525255b;
-  background: white;
-  color: whte;
-  outline: none;
-}
-
-.inputForm input:focus{
-  border: 1px solid rgb(86, 86, 86);
-}
-
-
-.btnAdd{
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  width: 300px;
-  height: 45px;
-  padding: 5px;
-  color:white;
-  border: none;
-  background-color: rgba(65, 193, 65, 0.6);
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 800;
+  position: relative ;
 }
+
+.containerInputOfForm__group__Icon{
+  position: absolute;
+  left: 93%;
+  color: #fa3c3c;
+  font-size: 25px;
+}
+
+.containerInputOfForm__group__Icon__isSeleted{
+  display: none;
+}
+
+.containerInputOfForm__group__inputText{
+  width: 500px;
+  padding-right: 40px;
+}
+
+.containerInputOfForm__group__inputText__isSeleted{
+  width: 500px;
+  border-color: #fa3c3c;
+  padding-right: 40px;
+  box-shadow: none;
+}
+
+.containerInputOfForm__textError{
+  color: #fa3c3c;
+}
+
+
+.containerInputOfForm__inputTextArea{
+  max-width: 500px;
+  max-height: 130px;
+  min-width: 500px;
+  min-height: 130px;
+  width: 500px;
+  height: 130px;
+}
+
+.containerInputOfForm__inputTextArea__isSeleted{
+  max-width: 500px;
+  max-height: 130px;
+  min-width: 500px;
+  min-height: 130px;
+  width: 500px;
+  height: 130px;
+  border-color: #fa3c3c;
+  box-shadow: none;
+}
+
+.btnAdd{
+  width: 500px;
+}
+@media (max-width:1280px) {
+
+  .containerInputOfForm__group{
+    width: 100%;
+  }
+
+  .containerInputOfForm__group__Icon{
+    left: 90%;
+  }
+
+  .containerInputOfForm__group__inputText{
+    width:100%;
+  }
+
+  .containerInputOfForm__group__inputText__isSeleted{
+    width:100%;
+    border-color: #fa3c3c;
+  }
+
+  .containerInputOfForm__inputTextArea{
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+  }
+  .containerInputOfForm__inputTextArea__isSeleted{
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    border-color: #fa3c3c;
+    box-shadow: none;
+  }
+
+  .btnAdd{
+    width: 100%;
+   }
+}
+
+
 /* culmna de opciones de tabla categorias */
 .btnTableOptions{
   display: flex;
@@ -272,3 +308,5 @@ table tbody tr td{
 .groupInputSearch__input{
   padding-left: 30px;
 }
+
+

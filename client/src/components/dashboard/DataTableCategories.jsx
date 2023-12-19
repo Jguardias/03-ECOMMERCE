@@ -11,6 +11,7 @@ import { Toast } from 'primereact/toast';
 import { MdDeleteForever } from "react-icons/md";
 import { HiOutlinePencil } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
+import { IoIosInformationCircleOutline } from "react-icons/io"
 //import methods of API for consume apiREST (categories)
 import {getCategories, deleteCategory} from "../../api/apiRequests";
 //import styles module for  DataTableCategories component
@@ -49,12 +50,12 @@ function DataTableCategories () {
 
     // Display a success message in the Toast when a category is successfully removed.
     const hadleToastDeleteSucces = () => {
-      toast.current.show({ severity: 'success', summary: 'Éxito', detail: 'Categoria eliminada', life: 3000});
+      toast.current.show({ severity: 'success', summary: 'Éxito', detail: 'Categoria eliminada', life: 4000});
     }
 
     // Displays an informational message in the Toast when a category deletion is canceled or unsuccessful.
     const hadleToastDeleteError = () => {
-      toast.current.show({ severity: 'info', summary: 'Desaprobado', detail: 'La acción ha sido cancelada', life: 3000});
+      toast.current.show({ severity: 'info', summary: 'Desaprobado', detail: 'La acción ha sido cancelada', life: 4000});
     }
 
      /* Displays a confirmation dialog to delete a category.
@@ -64,7 +65,7 @@ function DataTableCategories () {
       confirmDialog({
         message: '¿Deseas eliminar esta categoria?',
         header: 'Confirmar',
-        icon: '',
+        icon: <IoIosInformationCircleOutline  style={{fontSize:"2em"}}/>,
         accept:()=> {
           // If accepted, executes the delete function and displays a success message in the Toast.
           handleDelete(id);  
@@ -74,7 +75,8 @@ function DataTableCategories () {
           // If rejected, display an informational message in the Toast.
           hadleToastDeleteError();
         }, 
-        acceptLabel: "Sí" 
+        acceptLabel: "Sí",
+        acceptClassName: 'p-button-danger'
       });
     };
 

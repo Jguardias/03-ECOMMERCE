@@ -2,8 +2,8 @@
 import FormCategories from "./FormCategories.jsx";
 import DataTableCategories from "./dataTableCategories.jsx";
 import { TabView, TabPanel } from 'primereact/tabview';
-//import styles module for App DashBoardCategories component
-import styles from "../../styles/DashBoard.module.css";
+
+
 
 
 
@@ -13,7 +13,7 @@ function Categories() {
 
   return (
     //dashboardCategories component display Form of category and Table information  of categories 
-    <div className={styles.dashBoardProduct}>
+    <div>
        {/* Tab View to switch between different views (New Category and Category List) */}
       <TabView  style={{width:"100vw"}}>
           {/* Tab Panel for creating a new category */}
