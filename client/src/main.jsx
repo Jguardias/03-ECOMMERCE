@@ -6,6 +6,8 @@ import 'react-responsive-modal/styles.css';
 import "swiper/css";
 import 'swiper/css/bundle';
 import "primereact/resources/themes/lara-light-blue/theme.css";
+import 'primereact/resources/primereact.css';  
+
 // import components 
 import App from './App.jsx';
 import DashBord from "./DashBoard.jsx";

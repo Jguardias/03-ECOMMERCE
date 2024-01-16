@@ -1,9 +1,17 @@
 import  express  from "express";
-import cors from "cors" 
+import cors from "cors";
+
+import { fileURLToPath } from 'url';
+import { dirname } from 'path'; 
+import path from 'path';
+
 import categoriesRoutes from "./src/routes/categories.routes.js"
 import productsRouter from "./src/routes/products.routes.js"
 import shopCarRouter from "./src/routes/shopcar.routes.js"
 import systemOrderRouter from "./src/routes/systemorder.routes.js"
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 
 const app = express()
@@ -15,6 +23,8 @@ app.use((req, res, next) => {
     next();
   });
 
+
+  app.use('/uploads', express.static(path.join(__dirname,'src' ,'uploads')));
   
 app.use(cors())
 app.use(express.json())

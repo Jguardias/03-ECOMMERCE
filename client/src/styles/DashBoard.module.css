@@ -127,7 +127,15 @@ h2{
 /* styles dashBoardCategory */
 
 
-/* styles inputText  and inputTextArea of FromCategories component */
+/* styles inputText,Dropdown, inputTextArea of FromCategories, FromProducts component */
+.dropdownInput{
+  width: 500px;
+  display: flex;
+  align-items: center;
+  position: relative ;
+  margin-bottom: 10px;
+}
+
 .containerInputOfForm{
   display: flex;
   flex-direction: column;
@@ -194,6 +202,9 @@ h2{
   width: 500px;
 }
 @media (max-width:1280px) {
+  .dropdownInput{
+    width: 100%;
+  }
 
   .containerInputOfForm__group{
     width: 100%;
@@ -309,4 +320,46 @@ h2{
   padding-left: 30px;
 }
 
+/* styles of card from home component */
+
+.containerHome{
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  width: 20em;
+  height: 13em;
+  text-align: center;
+}
+
+.card p{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width:1280px){
+  .containerHome{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .card{
+    width: 100%;
+    height: 13em;
+  }
+}
+
+.btnUpload{
+  background-color: #818cf8;
+  width: 100px;
+}
 

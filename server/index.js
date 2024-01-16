@@ -7,7 +7,7 @@ import {sequelize} from "./src/database/database.js";
 async function main(){
 
     try {     
-        await sequelize.sync({force: false});
+        await sequelize.sync({force: false, logging: false});
         app.listen(3000);
         console.log("sever 3000");
       } catch (error) {

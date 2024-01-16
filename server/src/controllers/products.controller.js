@@ -14,18 +14,22 @@ export const getProducts = async (req, res) =>{
 export const createProduct = async(req, res) =>{
     try {
        const {name,description,src,price,off,categoryId}  = req.body;
+       saveImage(req.file)
+       
+        const url = `http://localhost:3000/uploads/${req.file.originalname}`;
+
        const  newProduct = await Products.create(
         {
             name,
             description,
-            src,
+            src: url,
             price,
             off,
             categoryId
         }
        );
        console.log(req.file);
-       saveImage(req.file)
+
        res.json(newProduct)
     } catch (error) {
         return res.status(500).json({message: error.message});
