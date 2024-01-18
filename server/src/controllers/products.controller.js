@@ -1,5 +1,5 @@
 import {Products} from "../models/Products.js"
-import saveImage from "../services/renameImage.js"
+import renameImage from "../services/renameImage.js"
 
 export const getProducts = async (req, res) =>{
     try {
@@ -13,9 +13,10 @@ export const getProducts = async (req, res) =>{
 
 export const createProduct = async(req, res) =>{
     try {
-       const {name,description,src,price,off,categoryId}  = req.body;
-       saveImage(req.file)
-       
+       const {name,description,price,off,categoryId}  = req.body;
+    
+         renameImage(req.file)
+      
         const url = `http://localhost:3000/uploads/${req.file.originalname}`;
 
        const  newProduct = await Products.create(
@@ -28,7 +29,7 @@ export const createProduct = async(req, res) =>{
             categoryId
         }
        );
-       console.log(req.file);
+       
 
        res.json(newProduct)
     } catch (error) {

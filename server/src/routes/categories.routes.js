@@ -1,13 +1,7 @@
 // Import router from Express
 import { Router } from "express";
-// Import specific handlers for category CRUD operations
-import {
-    getCategories,
-    createCategories,
-    deleteCategories,
-    updateCategories,
-    getCategoriesProducts
-  } from "../controllers/categories.controller.js";
+// Import specific handlers for categories CRUD operations
+import {getCategories,createCategories, deleteCategories, updateCategories,getCategoriesProducts} from "../controllers/categories.controller.js";
 // Create an Express router instance
 const router = Router() 
 // CRUD routes for categories
