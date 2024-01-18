@@ -99,19 +99,19 @@ function DataTableProducts() {
               </div>
           </div>
           {/*DataTable component of primeReact */}
-          <DataTable filters={filters}  value={category}  paginator rows={5} rowsPerPageOptions={[5, 10]}   >
-            <Column  field="id"    header="ID" ></Column>
-            <Column  field="name"    header="Nombre" ></Column>
-            <Column  field="description"  header="Descripción"></Column>
-            <Column  field="price" header="Precio"></Column>
-            <Column  field="off" header="Descuento"></Column>
-            <Column  field="src"  header="Vista" body={
+          <DataTable lazy filters={filters}  value={category}  paginator rows={5} rowsPerPageOptions={[5, 10]}   >
+            <Column  field="id"    header="ID" align={"center"}  ></Column>
+            <Column  field="name"    header="Nombre" align={"center"}  ></Column>
+            <Column  field="description"  header="Descripción" align={"left"}></Column>
+            <Column  field="price" header="Precio" align={"center"} ></Column>
+            <Column  field="off" header="Descuento" align={"center"} ></Column>
+            <Column  field="src"  header="Vista" align={"center"} body={
               (data)=> (
                 <img src={data.src} width={"100px"} height={"100px"}></img>
               )
             }></Column>
-            <Column  field="categoryId" header="Categoria"></Column>
-            <Column  field=""  body={(data) => (
+            <Column  field="categoryId" header="Categoria" align={"center"}></Column>
+            <Column  field=""  align={"center"} body={(data) => (
               <div key={data.id} className={styles.btnTableOptions}>
                 <button  className={styles.btnEdit} onClick={()=>{}}><HiOutlinePencil/></button>
                 <button  className={styles.btnDelete} onClick={() => confirmDialogDelete(data.id)}>   <MdDeleteForever /></button>
