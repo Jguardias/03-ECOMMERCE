@@ -4,6 +4,7 @@ import cors from "cors";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import path from 'path';
+import morgan from "morgan";
 //import Routes 
 import categoriesRoutes from "./routes/categories.routes.js"
 import productsRouter from "./routes/products.routes.js"
@@ -21,7 +22,8 @@ app.use(cors({
   headers: 'Origin, X-Requested-With, Content-Type, Accept'
 }));
 // Configuration so that Express can parse JSON in requests
-app.use(express.json())
+app.use(express.json());
+app.use(morgan("dev"));
 // Configuring middleware to serve static files from '/uploads' path
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Setting up application routes

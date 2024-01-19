@@ -9,7 +9,6 @@ router.get("/categories", getCategories) ;
 router.post("/categories", createCategories);
 router.put("/categories/:id", updateCategories);
 router.delete("/categories/:id",deleteCategories);
-router.get("/categories/:id");
 router.get("/categories/:id/products",getCategoriesProducts);
 //Export router
 export default router;
