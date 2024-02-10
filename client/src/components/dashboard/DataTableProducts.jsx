@@ -30,18 +30,18 @@ function DataTableProducts() {
       });
 
     // state for store list of categories
-    const [category, setCategory] = useState([]);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
     // call getProducts asynchronous function to get list of categories from db
-    getProducts().then((data) => setCategory(data));
+    getProducts().then((data) => setProducts(data));
     }, []);
 
     //function to delete  information  products to the db
     const handleDelete = (productId) => {
       deleteProduct(productId)
         .then(() => {
-          getProducts().then((data) => setCategory(data));
+          getProducts().then((data) =>setProducts(data));
         })
         .catch((error) => {
           console.error("Error al eliminar producto:", error);
@@ -99,7 +99,7 @@ function DataTableProducts() {
               </div>
           </div>
           {/*DataTable component of primeReact */}
-          <DataTable lazy filters={filters}  value={category}  paginator rows={5} rowsPerPageOptions={[5, 10]}   >
+          <DataTable  filters={filters}  value={products}  paginator rows={5} rowsPerPageOptions={[5, 10]}   >
             <Column  field="id"    header="ID" align={"center"}  ></Column>
             <Column  field="name"    header="Nombre" align={"center"}  ></Column>
             <Column  field="description"  header="Descripción" align={"left"}></Column>

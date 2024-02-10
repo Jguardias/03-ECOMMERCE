@@ -9,13 +9,16 @@ import styles from "../../styles/DashBoard.module.css";
 
 
 
-function InputTextIcon({name,label,value,placeholder,handleChange,check}){
+function InputTextIcon({name,label,value,placeholder,handleChange,check,regex}){
      
-    
+    const [prevValue, setPrevValue] = useState('');
     //dynamic style for label of input fields in case of error
     const [checkValidate , setCheckValidate] = useState(check);
 
 
+     // dynamic text for label of input fields in case of error
+     const [textError , setTextError] = useState("");
+     
     useEffect(()=>{
       // Check if check (indicating successful or failed validation)}
       if(check===true){
@@ -27,12 +30,6 @@ function InputTextIcon({name,label,value,placeholder,handleChange,check}){
       }
     },[check])
 
-     //regular expression for field validation
-    const notEmptyRegex = /^.+$/;
-   
-
-    // dynamic text for label of input fields in case of error
-    const [textError , setTextError] = useState("");
 
     /**
     * Function that validates a regular expression on an input event and performs actions based on the validation
@@ -46,8 +43,11 @@ function InputTextIcon({name,label,value,placeholder,handleChange,check}){
         const {value} = e.target;
     
         if(validatePattern){
-          if(value.length > 0 && value.length < 30 ){
+          if(value.length >= 0 && value.length < 30 ){
             // The input is valid, no error message is displayed.
+            handleChange(value,name);
+            console.log(value)
+            setPrevValue(value);
             setCheckValidate(true)
             setTextError("")
           }else if (value.length === 30){
@@ -72,7 +72,7 @@ function InputTextIcon({name,label,value,placeholder,handleChange,check}){
               {/* Icon associated with the input field */}
               <IoIosWarning   className={checkValidate ?styles.containerInputOfForm__group__Icon__isSeleted :styles.containerInputOfForm__group__Icon} />
               {/* Text input field */}
-              <InputText  className={checkValidate ? styles.containerInputOfForm__group__inputText : styles.containerInputOfForm__group__inputText__isSeleted } type="text" name={name} value={value} onChange={handleChange} placeholder={placeholder} maxLength={30} keyfilter={notEmptyRegex} validateOnly onInput={handleValidate}/> 
+              <InputText  className={checkValidate ? styles.containerInputOfForm__group__inputText : styles.containerInputOfForm__group__inputText__isSeleted } type="text" name={name} value={prevValue}  placeholder={placeholder} maxLength={30}  keyfilter={regex} validateOnly  onInput={handleValidate}/> 
             </div>
             {/* Error message */}
             <small className={checkValidate ? "" : styles.containerInputOfForm__textError}> {textError}</small>

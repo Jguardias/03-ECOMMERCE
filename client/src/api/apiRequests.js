@@ -1,7 +1,7 @@
 import axios from "axios"
 
 
-//rutas productos
+//rutas products
 export const getProducts = () =>{
     return axios.get("/products").then((response) => response.data);
   }
