@@ -10,14 +10,24 @@ import { Button } from "primereact/button";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 //import methods of API for consume apiREST (products)
 import {
-  getProducts,
   createProduct,
   getCategories,
+  updateProduct,
+  getProducts,
+  getProduct,
 } from "../../api/apiRequests";
 //import styles module for FormProducts component
 import styles from "../../styles/DashBoard.module.css";
 
-function FromProducts() {
+function FromProducts({
+  dataProduct,
+  handleUpdateTableProducts,
+  handleUpdateModalProducts,
+  idProductUpdate,
+}) {
+  const initDataProduct = dataProduct;
+
+  const regexInputTextIcon = /^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ%!¡(),:.\s]*$/;
   //initializing reference to interact with Toast component
   const toast = useRef(null);
 
@@ -27,20 +37,17 @@ function FromProducts() {
   //dynamic style for label of input fields in case of error
   const [checkValidate, setCheckValidate] = useState(true);
 
-  // state for store list of products
-  const [products, setProducts] = useState([]);
   // state for store value inputs form  of  new products
   const [newProduct, setNewProduct] = useState({
-    name: "",
-    description: "",
-    price: "",
-    off: "",
-    categoryId: "",
+    name: dataProduct ? initDataProduct.name : "",
+    description: dataProduct ? initDataProduct.description : "",
+    price: dataProduct ? initDataProduct.price : "",
+    off: dataProduct ? initDataProduct.off : "",
+    categoryId: dataProduct ? initDataProduct.categoryId : "",
   });
 
   useEffect(() => {
-    // call getProducts asynchronous function to get list of products from db
-    getProducts().then((data) => setProducts(data));
+    // call getCategories asynchronous function to get list of categories from db
     getCategories().then((data) => setCategory(data));
   }, []);
 
@@ -77,46 +84,59 @@ function FromProducts() {
   /* Displays a confirmation dialog to create a category.
    If accepted, executes the createcategory function and displays a success message in the Toast.
    If rejected, display an informational message in the Toast.*/
-  const confirmDialogCreate = (image) => {
+  const confirmDialogCreate = (formData) => {
     confirmDialog({
-      message: "¿Deseas crear una nueva categoria?",
+      message: "¿Deseas crear un nuevo producto?",
       header: "Confirmar",
       icon: <IoIosInformationCircleOutline style={{ fontSize: "2em" }} />,
       accept: () => {
         // If accepted, executes the createCategory function and displays a success message in the Toast.
-        const formData = new FormData();
-        formData.append("name", newProduct.name);
-        formData.append("description", newProduct.description);
-        formData.append("price", newProduct.price);
-        formData.append("off", newProduct.off);
-        formData.append("categoryId", newProduct.categoryId);
-        formData.append("image", image);
-
-        const formDataObject = {};
-        formData.forEach((value, key) => {
-          formDataObject[key] = value;
-        });
-
-        console.log(formDataObject);
-
         createProduct(formData)
           .then(() => {
-            getProducts().then((data) => setProducts(data));
+            hadleToastCreateSucces();
+            setNewProduct({
+              name: "",
+              description: "",
+              price: "",
+              off: "",
+              categoryId: "",
+            });
           })
           .catch((error) => {
             console.error("Error al agregar producto:", error);
           });
-        hadleToastCreateSucces();
-        setNewProduct({
-          name: "",
-          description: "",
-          price: "",
-          off: "",
-          categoryId: "",
-        });
       },
       reject: () => {
         // If rejected, display an informational message in the Toast.
+        hadleToastCreateError();
+      },
+      acceptLabel: "Sí",
+    });
+  };
+
+  const confirmDialogUpdate = (formData) => {
+    confirmDialog({
+      message: "¿Deseas actualizar este producto?",
+      header: "Confirmar",
+      icon: <IoIosInformationCircleOutline style={{ fontSize: "2em" }} />,
+      accept: () => {
+        updateProduct(idProductUpdate, formData)
+          .then(() => {
+            hadleToastCreateSucces();
+            getProducts().then((data) => {
+              handleUpdateTableProducts(data);
+            });
+            getProduct(idProductUpdate).then((data) => {
+              handleUpdateModalProducts(data);
+            });
+          })
+          .catch((error) => {
+            console.error("Error al actualizar producto", error);
+          });
+      },
+      reject: () => {
+        // If rejected, display an informational message in the Toast.
+
         hadleToastCreateError();
       },
       acceptLabel: "Sí",
@@ -136,7 +156,18 @@ function FromProducts() {
       hadleToastFormError();
       setCheckValidate(false);
     } else {
-      confirmDialogCreate(archiveImage);
+      const formData = new FormData();
+      formData.append("name", newProduct.name);
+      formData.append("description", newProduct.description);
+      formData.append("price", newProduct.price);
+      formData.append("off", newProduct.off);
+      formData.append("categoryId", newProduct.categoryId);
+      formData.append("image", archiveImage);
+      if (dataProduct) {
+        confirmDialogUpdate(formData);
+      } else {
+        confirmDialogCreate(formData);
+      }
     }
   };
 
@@ -146,8 +177,8 @@ function FromProducts() {
       ...prevProduct,
       [name]: value,
     }));
-    console.log(newProduct);
   };
+
   //function to detect changes in Dropdown
   const handleChangeDrop = (e) => {
     const { name, value } = e.target;
@@ -168,13 +199,14 @@ function FromProducts() {
       {/* Toast component to display popup messages */}
       <Toast ref={toast} />
       {/* Confirmation dialog with custom accept label */}
-      <ConfirmDialog acceptLabel="Sí" />
+      {dataProduct ? "" : <ConfirmDialog acceptLabel="Sí" />}
+
       {/* Form product for submit new product to db  */}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <InputTextIcon
           type="text"
           name="name"
-          regex={/^[a-zA-Z]+$/}
+          regex={regexInputTextIcon}
           value={newProduct.name}
           handleChange={handleChange}
           placeholder="Ej: Hamburguesa"
@@ -206,7 +238,7 @@ function FromProducts() {
         <InputTextIcon
           type="text"
           name="off"
-          regex={/^[a-zA-Z]+$/}
+          regex={regexInputTextIcon}
           value={newProduct.off}
           handleChange={handleChange}
           placeholder="Ej: 30% OFF"
@@ -217,7 +249,7 @@ function FromProducts() {
         <InputTextArea
           type="text"
           name="description"
-          regex="alphanum"
+          regex={regexInputTextIcon}
           value={newProduct.description}
           handleChange={handleChange}
           placeholder="Ej:Pan, carne, queso, tomate, lechuga, cebolla "
@@ -225,11 +257,11 @@ function FromProducts() {
           check={checkValidate}
         />
 
-        <input type="file" name="image" />
-
+        <input className={styles.btnAdd} type="file" name="image" />
+        {/* <FileUpload  className={"btnAdd"} mode="basic" chooseLabel="Seleccionar imagen" type="file" name="image" /> */}
         <Button
           className={styles.btnAdd}
-          label="Añadir Producto"
+          label={dataProduct ? "Actualizar producto" : "Añadir Producto"}
           type="submit"
         />
       </form>

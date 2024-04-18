@@ -9,12 +9,13 @@ function InputTextArea({
   name,
   label,
   regex,
+  value,
   placeholder,
   handleChange,
   check,
 
 }) {
-  const [prevValue, setPrevValue] = useState("");
+  
   //dynamic style for label of input fields in case of error
   const [checkValidate, setCheckValidate] = useState(check);
 
@@ -39,7 +40,6 @@ function InputTextArea({
 
     if (value.length >= 0 && value.length < 100) {
       // The input is valid, no error message is displayed.
-      setPrevValue(value);
       handleChange(value, name);
       setCheckValidate(true);
       setTextError("");
@@ -70,7 +70,7 @@ function InputTextArea({
           }
           type="text"
           name={name}
-          value={prevValue}
+          value={value}
           placeholder={placeholder}
           keyfilter={regex}
           onInput={handleValidate}
