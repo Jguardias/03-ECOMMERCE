@@ -10,7 +10,7 @@ const router = Router()
 // CRUD routes for products
 router.get("/products", getProducts) ;
 router.post("/products", upload.single("image") ,createProduct);
-router.put("/products/:id", updateProduct);
+router.put("/products/:id",upload.single("image"), updateProduct);
 router.delete("/products/:id",deleteProduct);
 router.get("/products/:id",getProduct);
 
